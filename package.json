@@ -4,17 +4,29 @@
   "description": "API REST for human resources",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JLHuerta13/human-resources.git"
   },
   "keywords": [
     "api",
     "rest",
     "express",
-    "nodejs"
+    "nodejs",
+    "jwt",
+    "mysql"
   ],
   "author": "Juan Carlos Almaguer & Jorge Huerta",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JLHuerta13/human-resources/issues"
+  },
+  "homepage": "https://github.com/JLHuerta13/human-resources#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
   }
 }
