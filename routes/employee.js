@@ -1,15 +1,15 @@
 const express = require('express');
 const employee = express.Router();
-// Enlace con la base de datos 
-const employ = require('../employees.json').employee;
+const db = require('../config/database');
 
 employee.post('/', (req, res, next) => {
     return res.status(200).send(req.body);
 });
-
-// Ruta "/name" 
-employee.get('/', (req, res, next) => {
-    return res.status(200).send(employ);
+ 
+employee.get('/', async (req, res, next) => {
+    const employ = await db.query("SELECT * FROM employee;");
+    return res.status(200).json(employ);
+    // .json para dar formato a lo que devuelve
 });
 
 employee.get('/:id', (req, res, next) => {
