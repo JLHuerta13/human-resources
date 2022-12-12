@@ -9,7 +9,7 @@ app.use(express.urlencoded({extended: true}));
 
 
 app.get("/", (req, res, next) => {
-    return res.status(200).json({code: 1, message: "Bienvenido"});
+    return res.status(200).json({code: 200, message: "Bienvenido"});
 });
 
 app.use("/employee", employee);
