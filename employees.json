@@ -1,15 +1,17 @@
 {
     "employee": [{
         "id": 1,
-        "name": "Jorge",
-        "last_name": "Huerta",
+        "name": "Jorge Luis",
+        "fs_name": "Huerta",
+        "ms_name": "Vargas",
         "phone_num": 4422452878,
         "mail": "jorge@uaq.mx",
         "address": "Camino Real de Carretas #123"
     }, {
         "id": 2,
         "name": "Juan Carlos",
-        "last_name": "Almaguer",
+        "fs_name": "Almaguer",
+        "ms_name": "Alfaro",
         "phone_num": 4424669872,
         "mail": "juanc@uaq.mx",
         "address": "Senda del Retiro #456"
