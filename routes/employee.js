@@ -3,39 +3,34 @@ const employee = express.Router();
 const db = require('../config/database');
 
 employee.post('/', (req, res, next) => {
-    return res.status(200).send(req.body);
+    return res.status(200).json(req.body);
 });
  
 employee.get('/', async (req, res, next) => {
     const employ = await db.query("SELECT * FROM employee;");
-    return res.status(200).json(employ);
+    return res.status(200).json({code: 1, message: employ});
     // .json para dar formato a lo que devuelve
 });
 
-employee.get('/:id', (req, res, next) => {
-    const id = req.params.id - 1;
+employee.get('/:id', async (req, res, next) => {
+    const id = req.params.id;
     if(id >= 0 && id < employee.length){
-        return res.status(200).send(employ[req.params.id - 1]);
+        const employ = await db.query("SELECT * FROM employee WHERE id ="+id+";");
+        return res.status(200).json({code: 1, mesage: employ});
     }else {
-        return res.status(404).send("Empleado no encontrado")
+        return res.status(404).send({code: 404, message: "Empleado no encontrado"});
     }
 });
 
-employee.get('/:fs_name/:ms_name([A-Za-z]+)', (req, res, next) => {
+employee.get('/:fs_name/:ms_name([A-Za-z]+)', async (req, res, next) => {
     const fs_name = req.params.fs_name;
-    const ms_name = req.params.ms_name;       
+    const ms_name = req.params.ms_name;  
 
-        const emp = employ.filter((e) => {
-            if(e.fs_name.toUpperCase() == fs_name.toUpperCase()) {
-                if(e.ms_name.toUpperCase() == ms_name.toUpperCase()) {
-                    return e;
-                }
-            }
-        });
-        if(emp.length > 0){
-            return res.status(200).send(emp);
+    const employ = await db.query("SELECT * FROM employee WHERE fs_name='"+fs_name+"' && ms_name='"+ms_name+"';");
+        if(employ.length > 0){
+            return res.status(200).json({code: 1, mesage: employ});
         }
-        return res.status(404).send("Empleado no encontrado");
+        return res.status(404).send({code: 404, message: "Empleado no encontrado"});
     }
 );
 
