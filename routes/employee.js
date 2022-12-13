@@ -49,22 +49,84 @@ employee.put("/:id([0-9]{1,3})", async (req, res, next) => {
 });
 
 employee.patch("/:id([0-9]{1,3})", async (req, res, next) => {
-
     if(req.body.name){
-
         let query = `UPDATE employee SET name='${req.body.name}' where id=${req.params.id}`;
         
         const rows = await db.query(query);
         console.log(rows);
 
         if(rows.affectedRows==1){
-            return res.status(200).json({code: 200, message: "Empleado actualizado correctamente."});
+            return res.status(200).json({code: 200, message: "Nombre de empleado actualizado correctamente."});
         }
 
         return res.status(500).json({code: 500, message:"Ocurrió un error"});
+    }else{
+        if(req.body.fs_name){
+            let query = `UPDATE employee SET fs_name='${req.body.fs_name}' where id=${req.params.id}`;
+
+            const rows = await db.query(query);
+            console.log(rows);
+
+            if(rows.affectedRows==1){
+                return res.status(200).json({code: 200, message: "Apellido de empleado actualizado correctamente."});
+            }
+
+            return res.status(500).json({code: 500, message:"Ocurrió un error"});
+        }else{
+            if(req.body.ms_name){
+                let query = `UPDATE employee SET ms_name='${req.body.ms_name}' where id=${req.params.id}`;
+
+                const rows = await db.query(query);
+                console.log(rows);
+
+                if(rows.affectedRows==1){
+                    return res.status(200).json({code: 200, message: "Apellido de empleado actualizado correctamente."});
+                }
+
+                return res.status(500).json({code: 500, message:"Ocurrió un error"});
+            }else{
+                if(req.body.phone_num){
+                    let query = `UPDATE employee SET phone_num=${req.body.phone_num} where id=${req.params.id}`;
+
+                    const rows = await db.query(query);
+                    console.log(rows);
+
+                    if(rows.affectedRows==1){
+                        return res.status(200).json({code: 200, message: "Numero de telefono de empleado actualizado correctamente."});
+                    }
+
+                    return res.status(500).json({code: 500, message:"Ocurrió un error"});
+                }else{
+                    if(req.body.mail){
+                        let query = `UPDATE employee SET mail='${req.body.mail}' where id=${req.params.id}`;
+
+                        const rows = await db.query(query);
+                        console.log(rows);
+
+                        if(rows.affectedRows==1){
+                            return res.status(200).json({code: 200, message: "Mail de empleado actualizado correctamente."});
+                        }
+
+                        return res.status(500).json({code: 500, message:"Ocurrió un error"});
+                    }else{
+                        if(req.body.address){
+                            let query = `UPDATE employee SET address='${req.body.address}' where id=${req.params.id}`;
+
+                            const rows = await db.query(query);
+                            console.log(rows);
+
+                            if(rows.affectedRows==1){
+                                return res.status(200).json({code: 200, message: "Dirección de empleado actualizado correctamente."});
+                            }
+
+                            return res.status(500).json({code: 500, message:"Ocurrió un error"});
+                            }
+                    }
+                }
+            }
+        }
     }
     return res.status(500).json({code:500, message:"Campos Incompletos"});
-    
 });
 
 employee.get('/', async (req, res, next) => {
