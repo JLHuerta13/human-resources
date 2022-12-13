@@ -2,6 +2,7 @@ const express = require('express');
 const employee = express.Router();
 const db = require('../config/database');
 
+//INSERTAR EMPLEADO
 employee.post('/', async (req, res, next) => {
     const { name, fs_name, ms_name, phone_num, mail, address } = req.body;
 
@@ -18,6 +19,7 @@ employee.post('/', async (req, res, next) => {
     return res.status(500).json({code: 500, message: "Campos incompletos"});
 });
 
+//ELIMINAR EMPLEADO
 employee.delete("/:id([0-9]{1,3})", async (req, res, next) => {
     const query = `DELETE FROM employee WHERE id=${req.params.id}`;
     const rows = await db.query(query);
@@ -28,6 +30,7 @@ employee.delete("/:id([0-9]{1,3})", async (req, res, next) => {
     return res.status(404).json({code:404, message:"Empleado No Encontrado"});
 });
 
+//ACTUALIZAR EMPLEADO
 employee.put("/:id([0-9]{1,3})", async (req, res, next) => {
     const  {name, fs_name, ms_name, phone_num, mail, address} = req.body;
     if(name && fs_name && ms_name && phone_num && mail && address){
@@ -48,6 +51,7 @@ employee.put("/:id([0-9]{1,3})", async (req, res, next) => {
     
 });
 
+//ACTUALIZAR UN ELEMENTO DEL EMPLEADO
 employee.patch("/:id([0-9]{1,3})", async (req, res, next) => {
     if(req.body.name){
         let query = `UPDATE employee SET name='${req.body.name}' where id=${req.params.id}`;
@@ -129,12 +133,14 @@ employee.patch("/:id([0-9]{1,3})", async (req, res, next) => {
     return res.status(500).json({code:500, message:"Campos Incompletos"});
 });
 
+//OBTENER LISTA DE EMPLEADOS
 employee.get('/', async (req, res, next) => {
     const employ = await db.query("SELECT * FROM employee;");
     return res.status(200).json({code: 200, message: employ});
     // .json para dar formato a lo que devuelve
 });
 
+//OBTENER EMPLEADO POR ID
 employee.get('/:id', async (req, res, next) => {
     const id = req.params.id;
     if(id >= 0 ){
@@ -145,11 +151,13 @@ employee.get('/:id', async (req, res, next) => {
     }
 });
 
-employee.get('/:fs_name/:ms_name([A-Za-z]+)', async (req, res, next) => {
+//OBTENER EMPLEADO POR NOMBRE Y APELLIDOS
+employee.get('/:name/:fs_name/:ms_name([A-Za-z]+)', async (req, res, next) => {
+    const name = req.params.name;
     const fs_name = req.params.fs_name;
     const ms_name = req.params.ms_name;  
 
-    const employ = await db.query("SELECT * FROM employee WHERE fs_name='"+fs_name+"' && ms_name='"+ms_name+"';");
+    const employ = await db.query("SELECT * FROM employee WHERE name='"+name+"' && fs_name='"+fs_name+"' && ms_name='"+ms_name+"';");
         if(employ.length > 0){
             return res.status(200).json({code: 1, mesage: employ});
         }
