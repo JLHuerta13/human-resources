@@ -16,9 +16,9 @@ user.post("/signin", async (req,res,next) => {
             return res.status(201).json({code: 201, message: "Usuario Registrado Correctamente"})
         }
 
-        return res.status(401).json({code: 401, message: "Ocurrió un error"});
+        return res.status(200).json({code: 401, message: "Ocurrió un error"});
     }
-    return res.status(500).json({code: 500, message: "Campos Incompletos"});
+    return res.status(200).json({code: 500, message: "Campos Incompletos"});
 });
 
 user.post("/login", async (req,res,next) => {
@@ -36,11 +36,11 @@ user.post("/login", async (req,res,next) => {
             }, "debugkey");
             return res.status(200).json({code: 200, message: token});
         }else{
-            return res.status(401).json({code: 401, message: "Usuario y/o contraseña incorrectos"});
+            return res.status(200).json({code: 401, message: "Usuario y/o contraseña incorrectos"});
         }
     }
 
-    return res.status(500).json({code: 500, message: "Campos Incompletos"});
+    return res.status(200).json({code: 500, message: "Campos Incompletos"});
 });
 
 user.get("/", async(req,res,next) => {
