@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./css/estilos.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!--<script src="./js/logout.js"></script>!-->
-    <script src="./js/employee.js"></script>
+    <script src="./js/buscar.js"></script>
     <!--<script src="./js/operations.js"></script>!--> 
 </head>
 <body>
@@ -21,25 +21,16 @@
 				<h1>Recursos Humanos</h1>
 			</div>
 			<nav class="menu">
-				<a href="#">About Us</a>
-				<a href="#">Contactanos</a>
-        <button class="btn" id="btnlogout">Cerrar Sesión</button>
+        		<button class="btn" id="btnReturn">Regresar</button>
 			</nav>
 		</div>
 	</header>
+	<div>
+		<input type="number" id="input-id" placeholder="Id">
+		<button class="btn" id="btnSearch">Buscar</button>
+	</div>
 	<div class="capa"></div>
 <!--	--------------->
     <input type="checkbox" id="btn-menu">
-    <div class="container-menu">
-	    <div class="cont-menu">
-		    <nav>
-			    <button id="btnInsert">Añadir Empleado</button>
-			    <button id="btnUpdate">Modificar Datos de Empleado</button>
-			    <button id="btnDelete">Eliminar Empleado</button>
-			    <button id="btnSearch">Busqueda de Empleados</button>
-		    </nav>
-		    <label for="btn-menu">✖️</label>
-	    </div>
-    </div>
 </body>
 </html>

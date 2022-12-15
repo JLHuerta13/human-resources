@@ -14,7 +14,7 @@ employee.post('/', async (req, res, next) => {
         if(rows.affectedRows == 1){
             return res.status(200).json({code: 201, message: "Empleado insertado correctamente"});
         }
-        return res.status(500).json({code: 500, message: "Ocurrió un error"});
+        return res.status(404).json({code: 404, message: "Ocurrió un error"});
     }
     return res.status(500).json({code: 500, message: "Campos incompletos"});
 });
@@ -141,7 +141,7 @@ employee.get('/', async (req, res, next) => {
 });
 
 //OBTENER EMPLEADO POR ID
-employee.get('/:id', async (req, res, next) => {
+employee.get('/:id([0-9]{1,3})', async (req, res, next) => {
     const id = req.params.id;
     if(id >= 0 ){
         const employ = await db.query("SELECT * FROM employee WHERE id ="+id+";");
