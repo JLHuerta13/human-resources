@@ -19,7 +19,7 @@ function init(){
 function search(){
     var id = document.getElementById('input-id').value;
     axios.get(url + '/employee/' + id, headers).then(function(res){
-        console.log(res);
+        console.log(res.data);
         var employee = res.data.message;
         switch(res.data.code){
             case 200: 

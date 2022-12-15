@@ -195,7 +195,7 @@ function remove(){
 }
 
 function search(){
-    window.location.href="busqueda.html";
+    window.location.href="buscar.html";
 }
 
 function logout(){
